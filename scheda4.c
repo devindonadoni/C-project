@@ -116,6 +116,7 @@ int main()
         printf("5) Calcola Coefficente binomiale\n");
         printf("6) Sommatoria di k^n\n");
         printf("7) Successione di Fibonacci\n");
+        printf("0) EXIT\n");
 
         printf("------------------------\n");
 
