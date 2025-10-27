@@ -29,26 +29,90 @@ float successione(int n){
 }
 
 int sommatoria_ric(int n){
-    printf("ultimo numero=%d\n", n%10);
-    printf("numeri prima=%d\n", n/10);
     if(n < 10) return n;
     return n%10 + sommatoria_ric(n/10);
 }
 
+int produttoria_ric(int n){
+    if(n < 10) return n;
+    return n%10 * produttoria_ric(n/10);
+}
+
+float myfun_iter(int n){
+    float a1 = -1.0;
+    float a2 = 0.0;
+    float risultato = 0;
+    for (int i = 3; i <= n; i++)
+    {
+        if(i%2 == 0)
+            risultato = ((0.5 * a1) - a2 + 1);
+        else
+            risultato = ((2*i) + a2 + 1 + (2*a1));
+        
+        a1 = a2;
+        a2 = risultato;
+    }
+
+    return risultato;
+    
+}
+
+float myfun_rec(int n){
+    if(n == 1) return -1;
+    if(n == 2) return 0;
+    if(n%2 == 0)
+        return 0.5 * myfun_rec(n - 2) - myfun_rec(n - 1) + 1;
+    else
+        return (2 * n) + myfun_rec(n - 1) + 1 + (2 * myfun_rec(n - 2));
+}
+
+float successioneIterativa(int n){
+    float s1 = 4;
+    float s2 = 5;
+    float risultato = 0;
+
+    for (int i = 3; i <= n; i++)
+    {
+        if(s2/2 >= (3 * s1)){
+            risultato = (s1 * s2)/i;
+        }else{
+            risultato = (s1 + s2)/i;
+        }
+        s1 = s2;
+        s2 = risultato;
+    }
+
+    return risultato;
+}
+
+float produttoria_ric_succ(int k, int j){
+    if(k == j) return successioneIterativa(k);
+    return successioneIterativa(j) * produttoria_ric_succ(k, j+1);
+}
+
 int main(){
     int n;
+    int j;
     printf("valore n-->");
     scanf("%d", &n);
 
     printf("a1-1) risultato = %d\n" , prodotto(n) * sommatoria1(n));
     
+    printf("a1-2 RISULTATi\n");
     for(int i = 0; i <= n; i++){
-        printf("S(%d) = %f\n" , i, successione(i));
+        printf("-S(%d) = %f\n" , i, successione(i));
     }
 
-
-
     printf("a2-1) risultato = %d\n" , sommatoria_ric(n));
+    printf("a2-2) risultato = %d\n" , produttoria_ric(n));
     
+    printf("a1-3) risultato successione iterativa = %f\n", myfun_iter(n));
+    printf("a1-3) risultato successione ricorsiva = %f\n", myfun_iter(n));
+
+    printf("a2-3) risultato successione iterativa = %f\n", successioneIterativa(n));
+
+    printf("Inserisci j-->");
+    scanf("%d", &j);
+    printf("a3-1) risultato produttoria della successione = %f\n", produttoria_ric_succ(n, j));
 
 }
