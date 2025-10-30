@@ -19,8 +19,6 @@ int prodottoJ(int j, int i){
     return prodotto;
 }
 
-
-
 int prodottoI(int i){
     int prodotto = 1;
     for (int j = 1; j <= i; j++)
@@ -97,7 +95,4 @@ int main(){
         printf("Risultato della funzione 5_ric ---> %d\n", sommatoria5_ric(n));
         printf("Risultato della funzione 7 ---> %d\n", funzione7(n));
     }
-    
-
-
 }

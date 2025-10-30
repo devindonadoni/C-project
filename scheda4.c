@@ -42,9 +42,10 @@ int coefficenteBinomiale(int n, int k)
 
     while (n > 0)
     {
-        fattorialeN *= n;
+        fattorialeN *= n;                               /**/   
         n--;
     }
+    
 
     while (k > 0)
     {

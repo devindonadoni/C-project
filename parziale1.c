@@ -90,6 +90,16 @@ float produttoria_ric_succ(int k, int j){
     return successioneIterativa(j) * produttoria_ric_succ(k, j+1);
 }
 
+float myfun_ric_n(int n){
+    if(n == 0) return 1.0;
+    if(n == 1) return 2.0;                                                                                                                //a(2) = 1.5    //a(3) = -0.25    //a(4) = 0.625
+    if(n%2 == 0){
+        return (myfun_ric_n(n-2) + myfun_ric_n(n - 1) )/2.0;
+    }else{
+        return (myfun_ric_n(n-1) - myfun_ric_n(n - 2) )/2.0;
+    }
+}
+
 int main(){
     int n;
     int j;
@@ -101,7 +111,7 @@ int main(){
     printf("a1-2 RISULTATi\n");
     for(int i = 0; i <= n; i++){
         printf("-S(%d) = %f\n" , i, successione(i));
-    }
+}
 
     printf("a2-1) risultato = %d\n" , sommatoria_ric(n));
     printf("a2-2) risultato = %d\n" , produttoria_ric(n));
@@ -111,8 +121,16 @@ int main(){
 
     printf("a2-3) risultato successione iterativa = %f\n", successioneIterativa(n));
 
-    printf("Inserisci j-->");
-    scanf("%d", &j);
-    printf("a3-1) risultato produttoria della successione = %f\n", produttoria_ric_succ(n, j));
+    // printf("Inserisci j-->");
+    // scanf("%d", &j);
+    // printf("a3-1) risultato produttoria della successione = %f\n", produttoria_ric_succ(n, j));
+
+    printf("a1-4) risultato della successione\n");
+    for (int i = 0; i <= n; i++)
+    {
+        printf("-S(%d)= %f\n",i, myfun_ric_n(i));
+    }
+    
+
 
 }
