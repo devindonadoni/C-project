@@ -5,7 +5,7 @@
       "name": "Debug C Program",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/scheda4",
+      "program": "${workspaceFolder}/liste",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",

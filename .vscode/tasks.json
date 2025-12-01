@@ -7,9 +7,9 @@
             "command": "gcc",
             "args": [
                 "-g",
-                "scheda4.c",
+                "liste.c",
                 "-o",
-                "scheda4",
+                "liste",
                 "-lm"
             ],
             "group": {
