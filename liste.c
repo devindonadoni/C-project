@@ -40,11 +40,13 @@ void stampaLista(Nodo **head)
 {
     Nodo *current = *head;
 
+    printf("\n[");
     while (current != NULL)
     {
-        printf("%d, ", current->valore);
+        printf(" %d,", current->valore);
         current = current->next;
     }
+    printf("]\n");
 }
 
 void inserimentoMiddle(Nodo **head, int valore)
@@ -215,26 +217,46 @@ void eliminaDuplicati(Nodo **head)
 
 void invertiLista(Nodo **head)
 {
-    Nodo *current = *head;02.
-    Nodo *prev =    Nodo *newHead = *head;
- NULL;
-    int n = contaLunghezza(*head);
-    for (int i = n; i > 0; i--)
+    Nodo *prev = *head;
+    Nodo *current = *head;
+    
+    if (prev->next != NULL)
     {
-        int s = 0;
-        while (s < i-1)
+        current = current->next;
+        prev->next = NULL;
+        while (current->next != NULL)
         {
+            (*head) = current->next;
+            current->next = prev;
+
             prev = current;
-            current = current->next;
-            s++;
+            current = (*head);
         }
-        current->next = prev;
+        (*head)->next = prev;
     }
+}
+
+void sottoLista_K(Nodo **head, int k){
+    int n = contaLunghezza(*head);
+    Nodo *current = *head;
+    Nodo  *prec = NULL;
+    if(k<n){
+        for (int i = 0; i < k; i++)
+        {   
+            prec = current;
+            current = current->next;
+            prec->next = NULL;
+            free(prec);
+        }
+        *head = current;
+    }
+    
 }
 
 int main()
 {
     Nodo *head = NULL;
+    int k;
     // inserimentoTesta(&head, 4);
     // inserimentoTesta(&head, 8);
     // inserimentoCoda(&head, 10);
@@ -282,18 +304,27 @@ int main()
     // printf("\nSTAMPATA\n");
     // stampaLista(&head);
 
-    // ?ESERCIZIO 5
+    // !ESERCIZIO 5
     // inserimentoCoda(&head, 1);
     // inserimentoCoda(&head, 8);
-    // inserimentoCoda(&head, 7);
+    // inserimentoCoda(&head, 8);
     // inserimentoCoda(&head, 11);
     // inserimentoCoda(&head, 1);
     // stampaLista(&head);
-
     // invertiLista(&head);
     // printf("\nSTAMPATA\n");
     // stampaLista(&head);
 
     // !ESERCIZIO 6
-
+    inserimentoCoda(&head, 1);
+    inserimentoCoda(&head, 8);
+    inserimentoCoda(&head, 7);
+    inserimentoCoda(&head, 11);
+    inserimentoCoda(&head, 1);
+    stampaLista(&head);
+    printf("K-->");
+    scanf("%d", &k);
+    sottoLista_K(&head, k);
+    printf("\nSTAMPATA\n");
+    stampaLista(&head);
 }
